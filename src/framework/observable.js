@@ -21,6 +21,10 @@ export default class Observable {
     this.#observers.delete(observer);
   }
 
+  size(){
+    return this.#observers.size;
+  }
+
   /**
    * Метод для оповещения подписчиков о наступлении события
    * @param {*} event Тип события
