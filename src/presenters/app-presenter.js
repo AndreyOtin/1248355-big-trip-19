@@ -70,7 +70,6 @@ export default class AppPresenter {
     render(this.#emptyListComponent, this.#container.tripEvents);
   }
 
-
   #toggleFilterDisabledState = () => {
     toggleDisabledState(this.#filterComponent.element, 'input');
   };
@@ -110,6 +109,7 @@ export default class AppPresenter {
 
     this.#filterType = filterType;
 
+    this.#tripInfoPresenter.handleFilterChange(filterType);
     this.#pointsListPresenter.handleFilterChange(filterType);
   };
 }

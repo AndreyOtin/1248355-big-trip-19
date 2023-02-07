@@ -7,7 +7,6 @@ import { EventType } from '../../consts/observer';
 
 export default class AbstractPointsPresenter extends AbstractPresenter {
   #points;
-  #totalPointsPrice;
   _destinationsModel = new DestinationsModel();
   _offersModel = new OffersModel();
   _pointsModel = new PointsModel();
@@ -32,10 +31,6 @@ export default class AbstractPointsPresenter extends AbstractPresenter {
     this.#points = value;
   }
 
-  get totalPointsPrice() {
-    return this.#totalPointsPrice;
-  }
-
   get newEditPoint() {
     return {
       typeOffers: [],
@@ -51,13 +46,9 @@ export default class AbstractPointsPresenter extends AbstractPresenter {
       return;
     }
 
-    this.#totalPointsPrice = 0;
-
     this.#points = this._pointsModel.points.map((point) => {
       const offers = this._offersModel.filterOffers(point.type, point.offers);
       const totalPrice = offers.reduce((sum, offer) => offer.price + sum, point.basePrice);
-
-      this.#totalPointsPrice += totalPrice;
 
       return {
         ...point,
